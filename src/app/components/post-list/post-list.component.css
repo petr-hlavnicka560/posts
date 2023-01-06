@@ -1,0 +1,7 @@
+.post-item-container {
+  display: flex;
+}
+
+.post-item-filler{
+  flex: 1;
+}
