@@ -1,9 +1,11 @@
 <ul>
-  <li *ngFor="let post of postList" class="post-item-container">
-  <span class="post-item-filler">
+  <app-list-header></app-list-header>
+  <li class="post-item-container" *ngFor="let post of postList; let i = index"
+      [ngStyle]="i === 1 ? {'border-bottom-width': '2px'} : {'border-bottom-width': '0px'}">
+  <span class="post-item-user">
     {{ post.name }}
   </span>
-  <span class="post-item-filler">
+    <span class="post-item-post">
     {{ post.detail }}
   </span>
   </li>

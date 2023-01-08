@@ -1,16 +1,20 @@
-.post-item-container{
+.list-header-container {
   display: flex;
   border-style: solid;
   border-color: #222222;
   border-top-width: 2px;
   border-left-width: 2px;
   border-right-width: 2px;
+  border-bottom: none;
+  background-color: #E5E5E5;
 }
 
-.post-item-user{
+.list-header-user{
   flex: 1;
+
 }
 
-.post-item-post{
+.list-header-post{
   flex: 3;
+
 }
