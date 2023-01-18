@@ -11,6 +11,9 @@
 
 .list-header-user{
   flex: 1;
+  border-right-style: solid;
+  border-color: #222222;
+  border-right-width: 2px;
 
 }
 

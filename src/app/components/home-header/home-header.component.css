@@ -1,0 +1,18 @@
+.header{
+  display: flex;
+  justify-content: space-between;
+  margin-left: 50px;
+  margin-right: 30px;
+}
+
+.title{
+  font-size: larger;
+}
+
+.log-in{
+  border-style: solid;
+  border-color: #3e3d3d;
+  border-width: 1px;
+  border-radius: 10px;
+  padding: 3px;
+}
