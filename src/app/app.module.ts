@@ -8,9 +8,17 @@ import { HomeComponent } from './components/home/home.component'
 import { ListHeaderComponent } from './components/list-header/list-header.component'
 import { HomeHeaderComponent } from './components/home-header/home-header.component'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import { HomeFooterComponent } from './components/home-footer/home-footer.component'
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ListHeaderComponent, PostListComponent, HomeHeaderComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    ListHeaderComponent,
+    PostListComponent,
+    HomeHeaderComponent,
+    HomeFooterComponent,
+  ],
   imports: [BrowserModule, AppRoutingModule, FontAwesomeModule],
   providers: [],
   bootstrap: [AppComponent],

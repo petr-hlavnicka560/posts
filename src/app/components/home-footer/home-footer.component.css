@@ -1,0 +1,9 @@
+.footer{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.caret-left{
+  margin-right: 10px;
+}
