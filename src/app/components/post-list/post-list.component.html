@@ -3,12 +3,20 @@
     <app-list-header></app-list-header>
     <li class="post-item-container" *ngFor="let post of postList$ | async; let i = index"
         [ngStyle]="i === 1 ? {'border-bottom-width': '2px'} : {'border-bottom-width': '0px'}">
-  <span class="post-item-user">
-    {{ post.id }}
-  </span>
-      <span class="post-item-post">
-    {{ post.body }}
-  </span>
+      <div class="post-item-user">
+        <div>
+          {{ post.user.name }}
+        </div>
+        <a href="{{post.user.website}}">{{ post.user.companyName }}</a>
+      </div>
+      <div class="post-item-post">
+        <div class="post-title">
+          {{ post.post.title }}
+        </div>
+        <div>
+          {{ post.post.body }}
+        </div>
+      </div>
     </li>
   </ul>
 </div>

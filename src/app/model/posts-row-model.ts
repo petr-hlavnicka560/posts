@@ -6,6 +6,7 @@ export interface PostsRow {
 interface UserDetail {
   name: string
   companyName: string
+  website: string
 }
 
 interface PostDetail {

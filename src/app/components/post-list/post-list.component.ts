@@ -4,7 +4,6 @@
 
 import { Component, OnInit } from '@angular/core'
 import { Observable } from 'rxjs'
-import { Post } from '../../model/posts-model'
 import { Store } from '@ngxs/store'
 import { DataState } from '../../store/data-store'
 
@@ -14,11 +13,16 @@ import { DataState } from '../../store/data-store'
   styleUrls: ['./post-list.component.css'],
 })
 export class PostListComponent implements OnInit {
-  postList$: Observable<Post[]>
+  postList$: Observable<
+    {
+      post: { title: string; body: string }
+      user: { companyName: string | undefined; name: string | undefined; website: string | undefined }
+    }[]
+  >
 
   constructor(private store: Store) {}
 
   ngOnInit() {
-    this.postList$ = this.store.select(DataState.getPosts)
+    this.postList$ = this.store.select(DataState.getPostsRows)
   }
 }
