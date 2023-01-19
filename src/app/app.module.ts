@@ -14,6 +14,7 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin'
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin'
 import { DataState } from './store/data-store'
 import { HttpClientModule } from '@angular/common/http'
+import { PostSelectPipe } from './pipes/post-select-pipe'
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http'
     PostListComponent,
     HomeHeaderComponent,
     HomeFooterComponent,
+    PostSelectPipe,
   ],
   imports: [
     BrowserModule,

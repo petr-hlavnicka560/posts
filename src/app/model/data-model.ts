@@ -1,14 +1,25 @@
-import { Post, defaultPosts } from './posts-model'
-import { User, defaultUsers } from './users-model'
+import { Post } from './posts-model'
+import { User } from './users-model'
 
 export interface Data {
   posts: Post[]
   users: User[]
+
+  page: Page
 }
 
 export const defaultData = {
   data: {
-    posts: defaultPosts,
-    users: defaultUsers,
+    posts: [],
+    users: [],
+    page: {
+      current: 1,
+      max: 1,
+    },
   },
+}
+
+export interface Page {
+  current: number
+  max: number
 }

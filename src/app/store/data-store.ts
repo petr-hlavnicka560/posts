@@ -1,7 +1,6 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store'
-import { Post } from '../model/posts-model'
 import { Data, defaultData } from '../model/data-model'
-import { AddPosts, AddUsers } from './data-actions'
+import { AddPage, AddPosts, AddUsers } from './data-actions'
 
 export class DataModel {
   data: Data
@@ -12,11 +11,6 @@ export class DataModel {
   defaults: defaultData,
 })
 export class DataState {
-  @Selector()
-  static getPosts(state: DataModel): Post[] {
-    return state.data.posts
-  }
-
   @Selector()
   static getPostsRows(state: DataModel): {
     post: { title: string; body: string }
@@ -38,6 +32,11 @@ export class DataState {
     })
   }
 
+  @Selector()
+  static getCurrentPage(state: DataModel): number {
+    return state.data.page.current
+  }
+
   @Action(AddPosts)
   addPosts({ getState, setState }: StateContext<DataModel>, action: AddPosts) {
     const stateCopy = { ...getState() }
@@ -51,6 +50,13 @@ export class DataState {
     const stateCopy = { ...getState() }
     stateCopy.data.users = []
     action.payload.forEach((user) => stateCopy.data.users.push(user))
+    setState(stateCopy)
+  }
+
+  @Action(AddPage)
+  addPage({ getState, setState }: StateContext<DataModel>, action: AddPage) {
+    const stateCopy = { ...getState() }
+    stateCopy.data.page = action.payload
     setState(stateCopy)
   }
 }
