@@ -1,13 +1,13 @@
 <div class="post-list">
   <ul>
     <app-list-header></app-list-header>
-    <li class="post-item-container" *ngFor="let post of postList; let i = index"
+    <li class="post-item-container" *ngFor="let post of postList$ | async; let i = index"
         [ngStyle]="i === 1 ? {'border-bottom-width': '2px'} : {'border-bottom-width': '0px'}">
   <span class="post-item-user">
-    {{ post.name }}
+    {{ post.id }}
   </span>
       <span class="post-item-post">
-    {{ post.detail }}
+    {{ post.body }}
   </span>
     </li>
   </ul>

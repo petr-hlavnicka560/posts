@@ -9,6 +9,10 @@ import { ListHeaderComponent } from './components/list-header/list-header.compon
 import { HomeHeaderComponent } from './components/home-header/home-header.component'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { HomeFooterComponent } from './components/home-footer/home-footer.component'
+import { NgxsModule } from '@ngxs/store'
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin'
+import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin'
+import { DataState } from './store/data-store'
 
 @NgModule({
   declarations: [
@@ -19,7 +23,15 @@ import { HomeFooterComponent } from './components/home-footer/home-footer.compon
     HomeHeaderComponent,
     HomeFooterComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FontAwesomeModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FontAwesomeModule,
+    NgxsModule.forRoot([]),
+    NgxsModule.forFeature([DataState]),
+    NgxsReduxDevtoolsPluginModule.forRoot(),
+    NgxsLoggerPluginModule.forRoot(),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
