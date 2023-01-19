@@ -1,6 +1,7 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store'
 import { Post } from '../model/posts-model'
 import { Data, defaultData } from '../model/data-model'
+import { AddPosts, AddUsers } from './data-actions'
 
 export class DataModel {
   data: Data
@@ -35,5 +36,21 @@ export class DataState {
         },
       }
     })
+  }
+
+  @Action(AddPosts)
+  addPosts({ getState, setState }: StateContext<DataModel>, action: AddPosts) {
+    const stateCopy = { ...getState() }
+    stateCopy.data.posts = []
+    action.payload.forEach((post) => stateCopy.data.posts.push(post))
+    setState(stateCopy)
+  }
+
+  @Action(AddUsers)
+  addUsers({ getState, setState }: StateContext<DataModel>, action: AddUsers) {
+    const stateCopy = { ...getState() }
+    stateCopy.data.users = []
+    action.payload.forEach((user) => stateCopy.data.users.push(user))
+    setState(stateCopy)
   }
 }
