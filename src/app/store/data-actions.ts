@@ -27,3 +27,9 @@ export class AddPage {
 
   constructor(public payload: Page) {}
 }
+
+export class AddCurrentPage {
+  static readonly type = statePrefix + 'AddCurrentPage'
+
+  constructor(public payload: number) {}
+}

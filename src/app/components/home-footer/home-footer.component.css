@@ -3,7 +3,14 @@
   flex-direction: row;
   justify-content: flex-end;
 }
+.carets{
+  margin-right: 30px;
+}
 
 .caret-left{
   margin-right: 10px;
+}
+
+.disabled{
+  color: #a8a7a7;
 }

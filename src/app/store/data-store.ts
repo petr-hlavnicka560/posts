@@ -1,6 +1,6 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store'
 import { Data, defaultData } from '../model/data-model'
-import { AddPage, AddPosts, AddUsers } from './data-actions'
+import { AddCurrentPage, AddPage, AddPosts, AddUsers } from './data-actions'
 
 export class DataModel {
   data: Data
@@ -37,6 +37,11 @@ export class DataState {
     return state.data.page.current
   }
 
+  @Selector()
+  static getMaxPage(state: DataModel): number {
+    return state.data.page.max
+  }
+
   @Action(AddPosts)
   addPosts({ getState, setState }: StateContext<DataModel>, action: AddPosts) {
     const stateCopy = { ...getState() }
@@ -57,6 +62,13 @@ export class DataState {
   addPage({ getState, setState }: StateContext<DataModel>, action: AddPage) {
     const stateCopy = { ...getState() }
     stateCopy.data.page = action.payload
+    setState(stateCopy)
+  }
+
+  @Action(AddCurrentPage)
+  addCurrentPage({ getState, setState }: StateContext<DataModel>, action: AddCurrentPage) {
+    const stateCopy = { ...getState() }
+    stateCopy.data.page.current = action.payload
     setState(stateCopy)
   }
 }

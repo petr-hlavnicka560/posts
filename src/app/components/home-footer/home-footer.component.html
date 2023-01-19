@@ -1,6 +1,6 @@
 <div class="footer">
-  <div>
-    <fa-icon class="caret-left" [icon]="faCaretLeft"></fa-icon>
-    <fa-icon [icon]="faCaretRight"></fa-icon>
+  <div class="carets">
+    <fa-icon [ngClass]="{disabled: caretLeftDisabled()}" class="caret-left fa-xl" [icon]="faCaretLeft" (click)="onCaretLeftClick()"></fa-icon>
+    <fa-icon [ngClass]="{disabled: caretRightDisabled()}" class="fa-xl"[icon]="faCaretRight" (click)="onCaretRightClick()"></fa-icon>
   </div>
 </div>
