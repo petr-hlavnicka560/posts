@@ -18,6 +18,7 @@ import { PostSelectPipe } from './pipes/post-select-pipe'
 import { DetailHeaderComponent } from './components/post-detail/detail-header/detail-header.component'
 import { DetailBodyComponent } from './components/post-detail/detail-body/detail-body.component'
 import { DetailComponent } from './components/post-detail/detail/detail.component'
+import { ReactiveFormsModule } from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { DetailComponent } from './components/post-detail/detail/detail.componen
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot(),
     HttpClientModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

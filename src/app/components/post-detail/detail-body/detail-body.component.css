@@ -9,10 +9,7 @@
   font-weight: bold;
 }
 
-.content {
-  border-style: solid;
-  border-color: #222222;
-  border-width: 1px;
+.contentContainer {
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -37,7 +34,13 @@
   padding: 3px 15px 3px;
 }
 
-
 .save{
   margin-right: 10px;
+}
+
+input[type="text"] {
+  width: 100%;
+  box-sizing: border-box;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing: border-box;
 }

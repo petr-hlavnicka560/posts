@@ -1,15 +1,22 @@
 <div class="body">
-  <div class="title">Title</div>
-  <div class="content">{{title}}</div>
-  <div class="title">Message</div>
-  <div class="content">{{message}}</div>
-  <div [ngClass]="{'buttons-full' : areButtonsFull, 'buttons-without-delete' : !areButtonsFull}">
-    <div *ngIf="areButtonsFull" class="button">
-      Delete
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)">
+    <label class="title" for="titleInput">Title</label>
+    <div class="contentContainer">
+      <input type="text" id="titleInput" [formControl]="$any(myForm.controls['title'])">
     </div>
-    <div class="buttons-full">
-      <div class="button save">Save</div>
-      <div class="button">Cancel</div>
+    <label class="title" for="messageInput">Message</label>
+    <div class="contentContainer">
+      <input type="text" id="messageInput" [formControl]="$any(myForm.controls['message'])">
     </div>
-  </div>
+    <div [ngClass]="{'buttons-full' : areButtonsFull, 'buttons-without-delete' : !areButtonsFull}">
+      <button type="button" *ngIf="areButtonsFull" class="button">
+        Delete
+      </button>
+      <div class="buttons-full">
+        <button type="submit" class="button save">Save</button>
+        <button type="button" class="button">Cancel</button>
+      </div>
+    </div>
+  </form>
 </div>
+
