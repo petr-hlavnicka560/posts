@@ -1,0 +1,43 @@
+.body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 5px 15px 5px 15px;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.content {
+  border-style: solid;
+  border-color: #222222;
+  border-width: 1px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.buttons-full{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.buttons-without-delete{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.button {
+  border-style: solid;
+  border-color: #222222;
+  border-width: 1px;
+  border-radius: 15px;
+  padding: 3px 15px 3px;
+}
+
+
+.save{
+  margin-right: 10px;
+}

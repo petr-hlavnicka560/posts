@@ -1,0 +1,15 @@
+.header{
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 15px;
+  padding-bottom: 5px;
+  margin-top: 5px;
+  border-bottom-style: solid;
+  border-color: #222222;
+  border-bottom-width: 1px;
+}
+
+.status{
+  font-size: larger;
+  font-weight: bold;
+}

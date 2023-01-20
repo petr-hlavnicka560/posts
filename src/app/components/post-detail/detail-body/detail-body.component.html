@@ -1,0 +1,15 @@
+<div class="body">
+  <div class="title">Title</div>
+  <div class="content">{{title}}</div>
+  <div class="title">Message</div>
+  <div class="content">{{message}}</div>
+  <div [ngClass]="{'buttons-full' : areButtonsFull, 'buttons-without-delete' : !areButtonsFull}">
+    <div *ngIf="areButtonsFull" class="button">
+      Delete
+    </div>
+    <div class="buttons-full">
+      <div class="button save">Save</div>
+      <div class="button">Cancel</div>
+    </div>
+  </div>
+</div>
