@@ -1,4 +1,4 @@
-.header{
+.header {
   display: flex;
   justify-content: flex-start;
   padding-left: 15px;
@@ -9,7 +9,7 @@
   border-bottom-width: 1px;
 }
 
-.status{
+.status {
   font-size: larger;
   font-weight: bold;
 }
@@ -18,5 +18,5 @@
   margin-left: 20px;
   margin-top: 4px;
   font-size: small;
-
+  color: blue;
 }
