@@ -5,7 +5,7 @@
 import { Component, OnInit } from '@angular/core'
 import { Observable } from 'rxjs'
 import { Store } from '@ngxs/store'
-import { DataState } from '../../store/data-store'
+import { DataState } from '../../../store/data-store'
 
 @Component({
   selector: 'app-post-list',

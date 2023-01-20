@@ -6,8 +6,8 @@ import { Component } from '@angular/core'
 import { faCaretLeft } from '@fortawesome/free-solid-svg-icons'
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons'
 import { Store } from '@ngxs/store'
-import { AddCurrentPage } from '../../store/data-actions'
-import { DataState } from '../../store/data-store'
+import { AddCurrentPage } from '../../../store/data-actions'
+import { DataState } from '../../../store/data-store'
 
 @Component({
   selector: 'app-home-footer',
