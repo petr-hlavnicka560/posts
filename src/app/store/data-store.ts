@@ -1,6 +1,7 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store'
 import { Data, defaultData } from '../model/data-model'
 import { AddCurrentPage, AddPage, AddPosts, AddUsers } from './data-actions'
+import { Post } from '../model/posts-model'
 
 export class DataModel {
   data: Data
@@ -12,7 +13,7 @@ export class DataModel {
 })
 export class DataState {
   @Selector()
-  static getPostsRows(state: DataModel): {
+  static selectPostsRows(state: DataModel): {
     post: { id: number; title: string; body: string }
     user: { companyName: string | undefined; name: string | undefined; website: string | undefined }
   }[] {
@@ -34,12 +35,17 @@ export class DataState {
   }
 
   @Selector()
-  static getCurrentPage(state: DataModel): number {
+  static selectPosts(state: DataModel): Post[] {
+    return state.data.posts
+  }
+
+  @Selector()
+  static selectCurrentPage(state: DataModel): number {
     return state.data.page.current
   }
 
   @Selector()
-  static getMaxPage(state: DataModel): number {
+  static selectMaxPage(state: DataModel): number {
     return state.data.page.max
   }
 

@@ -24,7 +24,7 @@ export class PostListComponent implements OnInit {
   constructor(private router: Router, private store: Store) {}
 
   ngOnInit() {
-    this.postList$ = this.store.select(DataState.getPostsRows)
+    this.postList$ = this.store.select(DataState.selectPostsRows)
   }
 
   navigateToDetail(id: number) {

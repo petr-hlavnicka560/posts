@@ -4,6 +4,10 @@
 
 import { Component } from '@angular/core'
 import { FormBuilder, FormGroup } from '@angular/forms'
+import { ActivatedRoute } from '@angular/router'
+import { Store } from '@ngxs/store'
+import { DataState } from '../../../store/data-store'
+import { Post } from '../../../model/posts-model'
 
 @Component({
   selector: 'app-detail-body',
@@ -12,9 +16,13 @@ import { FormBuilder, FormGroup } from '@angular/forms'
 })
 export class DetailBodyComponent {
   myForm: FormGroup
+  id: number
+  post: Post | undefined
 
-  constructor(fb: FormBuilder) {
-    this.myForm = fb.group({ title: [this.titleContent], message: [this.messageContent] })
+  constructor(private store: Store, private route: ActivatedRoute, fb: FormBuilder) {
+    route.params.subscribe((params) => (this.id = Number(params['id'])))
+    this.post = this.store.selectSnapshot(DataState.selectPosts).find((post) => post.id === this.id)
+    this.myForm = fb.group({ title: [this.post?.title], message: [this.post?.body] })
   }
 
   areButtonsFull = false
@@ -22,8 +30,4 @@ export class DetailBodyComponent {
   onSubmit(value: { title: string; message: string }) {
     console.log('====== submitted value: ', value)
   }
-
-  titleContent = 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit'
-  messageContent =
-    'est rerum tempore vitae\\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\\nqui aperiam non debitis possimus qui neque nisi nulla'
 }

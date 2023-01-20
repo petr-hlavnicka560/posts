@@ -14,7 +14,7 @@ export class PostSelectPipe implements PipeTransform {
         }[]
       | null
   ) {
-    const currentPage = this.store.selectSnapshot(DataState.getCurrentPage)
+    const currentPage = this.store.selectSnapshot(DataState.selectCurrentPage)
     return posts?.filter((element, index) => index >= (currentPage - 1) * 10 && index <= 10 * currentPage - 1)
   }
 }
