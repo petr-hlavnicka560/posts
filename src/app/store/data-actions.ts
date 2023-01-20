@@ -16,6 +16,12 @@ export class AddPosts {
   constructor(public payload: Post[]) {}
 }
 
+export class UpdatePost {
+  static readonly type = statePrefix + 'UpdatePost'
+
+  constructor(public payload: { id: number; title: string; body: string; userId: number | undefined }) {}
+}
+
 export class AddUsers {
   static readonly type = statePrefix + 'AddUsers'
 

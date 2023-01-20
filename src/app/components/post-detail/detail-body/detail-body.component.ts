@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router'
 import { Store } from '@ngxs/store'
 import { DataState } from '../../../store/data-store'
 import { Post } from '../../../model/posts-model'
+import { UpdatePost } from '../../../store/data-actions'
 
 @Component({
   selector: 'app-detail-body',
@@ -22,12 +23,19 @@ export class DetailBodyComponent {
   constructor(private store: Store, private route: ActivatedRoute, fb: FormBuilder) {
     route.params.subscribe((params) => (this.id = Number(params['id'])))
     this.post = this.store.selectSnapshot(DataState.selectPosts).find((post) => post.id === this.id)
-    this.myForm = fb.group({ title: [this.post?.title], message: [this.post?.body] })
+    this.myForm = fb.group({ title: [this.post?.title], body: [this.post?.body] })
   }
 
   areButtonsFull = false
 
-  onSubmit(value: { title: string; message: string }) {
-    console.log('====== submitted value: ', value)
+  onSubmit(value: { title: string; body: string }) {
+    this.store.dispatch(
+      new UpdatePost({
+        userId: this.post?.userId,
+        id: this.id,
+        title: value.title,
+        body: value.body,
+      })
+    )
   }
 }

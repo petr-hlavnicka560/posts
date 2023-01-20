@@ -6,7 +6,7 @@
     </div>
     <label class="title" for="messageInput">Message</label>
     <div class="contentContainer">
-      <input type="text" id="messageInput" [formControl]="$any(myForm.controls['message'])">
+      <input type="text" id="messageInput" [formControl]="$any(myForm.controls['body'])">
     </div>
     <div [ngClass]="{'buttons-full' : areButtonsFull, 'buttons-without-delete' : !areButtonsFull}">
       <button type="button" *ngIf="areButtonsFull" class="button">
