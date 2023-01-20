@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core'
 import { Observable } from 'rxjs'
 import { Store } from '@ngxs/store'
 import { DataState } from '../../../store/data-store'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-post-list',
@@ -15,14 +16,18 @@ import { DataState } from '../../../store/data-store'
 export class PostListComponent implements OnInit {
   postList$: Observable<
     {
-      post: { title: string; body: string }
+      post: { id: number; title: string; body: string }
       user: { companyName: string | undefined; name: string | undefined; website: string | undefined }
     }[]
   >
 
-  constructor(private store: Store) {}
+  constructor(private router: Router, private store: Store) {}
 
   ngOnInit() {
     this.postList$ = this.store.select(DataState.getPostsRows)
+  }
+
+  navigateToDetail(id: number) {
+    this.router.navigateByUrl(`/post/${id.toString()}`)
   }
 }

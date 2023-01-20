@@ -9,7 +9,7 @@ export class PostSelectPipe implements PipeTransform {
   transform(
     posts:
       | {
-          post: { title: string; body: string }
+          post: { id: number; title: string; body: string }
           user: { companyName: string | undefined; name: string | undefined; website: string | undefined }
         }[]
       | null

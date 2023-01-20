@@ -2,7 +2,7 @@
   <ul>
     <app-list-header></app-list-header>
     <li class="post-item-container" *ngFor="let post of postList$ | async | postSelect; let i = index"
-        [ngStyle]="i === 9 ? {'border-bottom-width': '2px'} : {'border-bottom-width': '0px'}">
+        [ngStyle]="i === 9 ? {'border-bottom-width': '2px'} : {'border-bottom-width': '0px'}" (click)="navigateToDetail(post.post.id)">
       <div class="post-item-user">
         <div>
           {{ post.user.name }}

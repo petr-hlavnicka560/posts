@@ -13,7 +13,7 @@ export class DataModel {
 export class DataState {
   @Selector()
   static getPostsRows(state: DataModel): {
-    post: { title: string; body: string }
+    post: { id: number; title: string; body: string }
     user: { companyName: string | undefined; name: string | undefined; website: string | undefined }
   }[] {
     return state.data.posts.map((post) => {
@@ -25,6 +25,7 @@ export class DataState {
           website: user?.website,
         },
         post: {
+          id: post.id,
           title: post.title,
           body: post.body,
         },
