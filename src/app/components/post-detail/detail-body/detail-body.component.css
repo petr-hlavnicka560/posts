@@ -9,18 +9,27 @@
   font-weight: bold;
 }
 
+.title-error {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  font-size: small;
+  font-weight: bold;
+  color: red;
+}
+
 .contentContainer {
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
-.buttons-full{
+.buttons-full {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.buttons-without-delete{
+.buttons-without-delete {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -34,13 +43,17 @@
   padding: 3px 15px 3px;
 }
 
-.save{
+.save {
   margin-right: 10px;
+}
+
+.saveDisabled {
+  color: #a8a7a7;
 }
 
 input[type="text"] {
   width: 100%;
   box-sizing: border-box;
-  -webkit-box-sizing:border-box;
+  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
 }
