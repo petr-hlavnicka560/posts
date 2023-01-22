@@ -75,7 +75,7 @@ export class DetailComponent {
 
   onDelete(id: number) {
     this.store.dispatch(new DeletePost(id))
-    this.updatePagingAndNavigateHome(this.id - 1)
+    this.updatePagingAndNavigateHome(this.id)
   }
 
   generateNewPost(userId: number) {
