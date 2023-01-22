@@ -17,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { PostSelectPipe } from './pipes/post-select-pipe'
 import { DetailComponent } from './components/post-detail/detail/detail.component'
 import { ReactiveFormsModule } from '@angular/forms'
+import { ListConfirmationComponent } from './components/posts/list-confirmation/list-confirmation.component'
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ReactiveFormsModule } from '@angular/forms'
     HomeHeaderComponent,
     HomeFooterComponent,
     ListHeaderComponent,
+    ListConfirmationComponent,
     PostListComponent,
     DetailComponent,
     PostSelectPipe,

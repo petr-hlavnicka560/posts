@@ -1,0 +1,7 @@
+.list-confirmation-container {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #7CB06C;
+}

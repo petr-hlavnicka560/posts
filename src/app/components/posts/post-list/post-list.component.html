@@ -1,5 +1,6 @@
 <div class="post-list">
   <ul>
+    <app-list-confirmation></app-list-confirmation>
     <app-list-header></app-list-header>
     <li class="post-item-container" *ngFor="let post of postList$ | async | postSelect; let i = index"
         [ngStyle]="i === 9 ? {'border-bottom-width': '2px'} : {'border-bottom-width': '0px'}">

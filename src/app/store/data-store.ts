@@ -2,6 +2,7 @@ import { Action, Selector, State, StateContext } from '@ngxs/store'
 import { Data, defaultData } from '../model/data-model'
 import { AddCurrentPage, AddPage, AddPosts, AddUsers, DeletePost, NewPost, UpdatePost } from './data-actions'
 import { Post } from '../model/posts-model'
+import { Confirmation } from '../helpers/posts-helpers'
 
 export class DataModel {
   data: Data
@@ -47,6 +48,11 @@ export class DataState {
   @Selector()
   static selectMaxPage(state: DataModel): number {
     return state.data.page.max
+  }
+
+  @Selector()
+  static selectConfirmation(state: DataModel): Confirmation {
+    return state.data.confirmation
   }
 
   @Action(AddPosts)
