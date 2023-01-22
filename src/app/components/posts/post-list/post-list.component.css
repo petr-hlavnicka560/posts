@@ -29,3 +29,8 @@
   font-weight: bold;
   font-size: larger;
 }
+
+.post-title-color:hover{
+  color: #588EC6;
+  text-decoration: underline;
+}
