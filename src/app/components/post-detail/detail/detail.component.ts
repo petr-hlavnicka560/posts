@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router'
 import { Store } from '@ngxs/store'
 import { DataState } from '../../../store/data-store'
 import { Post } from '../../../model/posts-model'
-import { NewPost, UpdatePost } from '../../../store/data-actions'
+import { DeletePost, NewPost, UpdatePost } from '../../../store/data-actions'
 import { Status } from '../../../helpers/post-detail-helpers'
 import { Router } from '@angular/router'
 
@@ -70,6 +70,10 @@ export class DetailComponent {
         )
       }
     }
+  }
+
+  onDelete(id: number) {
+    this.store.dispatch(new DeletePost(id))
   }
 
   generateNewPost(userId: number) {

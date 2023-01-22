@@ -5,7 +5,7 @@ import { AddPage, AddPosts, AddUsers } from './store/data-actions'
 import { Post } from './model/posts-model'
 import { User } from './model/users-model'
 import { forkJoin } from 'rxjs'
-import { getPageObject } from './helpers/page-helpers'
+import { getPageObject } from './helpers/paging-helpers'
 
 @Component({
   selector: 'app-root',

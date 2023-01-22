@@ -28,6 +28,12 @@ export class NewPost {
   constructor(public payload: Post) {}
 }
 
+export class DeletePost {
+  static readonly type = statePrefix + 'DeletePost'
+
+  constructor(public payload: number) {}
+}
+
 export class AddUsers {
   static readonly type = statePrefix + 'AddUsers'
 
