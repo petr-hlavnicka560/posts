@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core'
 import { Store } from '@ngxs/store'
 import { ApiService } from './api/apiService'
-import { AddPage, AddPosts, AddUsers } from './store/data-actions'
+import { AddPosts, AddUsers, UpdatePaging } from './store/data-actions'
 import { Post } from './model/posts-model'
 import { User } from './model/users-model'
 import { forkJoin } from 'rxjs'
-import { getPageObject } from './helpers/paging-helpers'
+import { updatePaging } from './helpers/paging-helpers'
 
 @Component({
   selector: 'app-root',
@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
     }).subscribe((res) => {
       if (res.posts) {
         this.store.dispatch(new AddPosts(res.posts as Post[]))
-        this.store.dispatch(new AddPage(getPageObject((res.posts as Post[]).length)))
+        this.store.dispatch(new UpdatePaging(updatePaging((res.posts as Post[]).length, 1)))
       }
       if (res.users) {
         this.store.dispatch(new AddUsers(res.users as User[]))

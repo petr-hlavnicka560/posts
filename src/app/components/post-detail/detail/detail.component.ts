@@ -4,13 +4,13 @@
 
 import { Component } from '@angular/core'
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { Store } from '@ngxs/store'
 import { DataState } from '../../../store/data-store'
 import { Post } from '../../../model/posts-model'
-import { DeletePost, NewPost, UpdatePost } from '../../../store/data-actions'
+import { DeletePost, NewPost, UpdatePaging, UpdatePost } from '../../../store/data-actions'
 import { Status } from '../../../helpers/post-detail-helpers'
-import { Router } from '@angular/router'
+import { updatePaging } from '../../../helpers/paging-helpers'
 
 @Component({
   selector: 'app-detail',
@@ -53,12 +53,12 @@ export class DetailComponent {
           new NewPost({
             // @ts-ignore
             userId: this.post?.userId,
-            // @ts-ignore
-            id: this.post?.id,
+            id: 1,
             title: value.title,
             body: value.body,
           })
         )
+        this.updatePagingAndNavigateHome(1)
       } else {
         this.store.dispatch(
           new UpdatePost({
@@ -68,12 +68,14 @@ export class DetailComponent {
             body: value.body,
           })
         )
+        this.router.navigateByUrl('/home')
       }
     }
   }
 
   onDelete(id: number) {
     this.store.dispatch(new DeletePost(id))
+    this.updatePagingAndNavigateHome(this.id - 1)
   }
 
   generateNewPost(userId: number) {
@@ -83,6 +85,11 @@ export class DetailComponent {
       title: '',
       body: '',
     }
+  }
+
+  updatePagingAndNavigateHome(index: number) {
+    this.store.dispatch(new UpdatePaging(updatePaging(this.store.selectSnapshot(DataState.selectPosts).length, index)))
+    this.router.navigateByUrl('/home')
   }
 
   onReturn() {

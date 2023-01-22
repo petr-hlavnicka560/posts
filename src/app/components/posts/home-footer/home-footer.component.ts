@@ -6,7 +6,7 @@ import { Component } from '@angular/core'
 import { faCaretLeft } from '@fortawesome/free-solid-svg-icons'
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons'
 import { Store } from '@ngxs/store'
-import { AddCurrentPage } from '../../../store/data-actions'
+import { SetCurrentPage } from '../../../store/data-actions'
 import { DataState } from '../../../store/data-store'
 
 @Component({
@@ -23,12 +23,12 @@ export class HomeFooterComponent {
   onCaretRightClick(): void {
     const currentPage = this.store.selectSnapshot(DataState.selectCurrentPage)
     const maxPage = this.store.selectSnapshot(DataState.selectMaxPage)
-    if (currentPage < maxPage) this.store.dispatch(new AddCurrentPage(currentPage + 1))
+    if (currentPage < maxPage) this.store.dispatch(new SetCurrentPage(currentPage + 1))
   }
 
   onCaretLeftClick(): void {
     const currentPage = this.store.selectSnapshot(DataState.selectCurrentPage)
-    if (currentPage > 1) this.store.dispatch(new AddCurrentPage(currentPage - 1))
+    if (currentPage > 1) this.store.dispatch(new SetCurrentPage(currentPage - 1))
   }
 
   caretRightDisabled(): boolean {

@@ -1,6 +1,15 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store'
 import { Data, defaultData } from '../model/data-model'
-import { AddCurrentPage, AddPage, AddPosts, AddUsers, DeletePost, NewPost, UpdatePost } from './data-actions'
+import {
+  AddPosts,
+  AddUsers,
+  ClearConfirmation,
+  DeletePost,
+  NewPost,
+  SetCurrentPage,
+  UpdatePaging,
+  UpdatePost,
+} from './data-actions'
 import { Post } from '../model/posts-model'
 import { Confirmation } from '../helpers/posts-helpers'
 
@@ -63,6 +72,14 @@ export class DataState {
     setState(stateCopy)
   }
 
+  @Action(AddUsers)
+  addUsers({ getState, setState }: StateContext<DataModel>, action: AddUsers) {
+    const stateCopy = { ...getState() }
+    stateCopy.data.users = []
+    action.payload.forEach((user) => stateCopy.data.users.push(user))
+    setState(stateCopy)
+  }
+
   @Action(UpdatePost)
   updatePost({ getState, setState }: StateContext<DataModel>, action: UpdatePost) {
     const stateCopy = { ...getState() }
@@ -71,6 +88,7 @@ export class DataState {
       acc.push(val.id === action.payload.id ? action.payload : val)
       return acc
     }, [])
+    stateCopy.data.confirmation = Confirmation.Update
     setState(stateCopy)
   }
 
@@ -84,35 +102,47 @@ export class DataState {
       },
       [action.payload]
     )
+    stateCopy.data.confirmation = Confirmation.New
     setState(stateCopy)
   }
 
   @Action(DeletePost)
   deletePost({ getState, setState }: StateContext<DataModel>, action: DeletePost) {
     const stateCopy = { ...getState() }
-    stateCopy.data.posts = stateCopy.data.posts.filter((post) => post.id !== action.payload)
+    stateCopy.data.posts = stateCopy.data.posts.reduce((acc, val) => {
+      if (val.id < action.payload) {
+        // @ts-ignore
+        acc.push(val)
+      }
+      if (val.id > action.payload) {
+        // @ts-ignore
+        acc.push({ ...val, id: val.id - 1 })
+      }
+
+      return acc
+    }, [])
+    stateCopy.data.confirmation = Confirmation.Delete
     setState(stateCopy)
   }
 
-  @Action(AddUsers)
-  addUsers({ getState, setState }: StateContext<DataModel>, action: AddUsers) {
-    const stateCopy = { ...getState() }
-    stateCopy.data.users = []
-    action.payload.forEach((user) => stateCopy.data.users.push(user))
-    setState(stateCopy)
-  }
-
-  @Action(AddPage)
-  addPage({ getState, setState }: StateContext<DataModel>, action: AddPage) {
+  @Action(UpdatePaging)
+  updatePaging({ getState, setState }: StateContext<DataModel>, action: UpdatePaging) {
     const stateCopy = { ...getState() }
     stateCopy.data.page = action.payload
     setState(stateCopy)
   }
 
-  @Action(AddCurrentPage)
-  addCurrentPage({ getState, setState }: StateContext<DataModel>, action: AddCurrentPage) {
+  @Action(SetCurrentPage)
+  SetCurrentPage({ getState, setState }: StateContext<DataModel>, action: SetCurrentPage) {
     const stateCopy = { ...getState() }
     stateCopy.data.page.current = action.payload
+    setState(stateCopy)
+  }
+
+  @Action(ClearConfirmation)
+  clearConfirmation({ getState, setState }: StateContext<DataModel>) {
+    const stateCopy = { ...getState() }
+    stateCopy.data.confirmation = Confirmation.None
     setState(stateCopy)
   }
 }

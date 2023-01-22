@@ -1,6 +1,7 @@
 import { Post } from '../model/posts-model'
 import { User } from '../model/users-model'
 import { Page } from '../model/data-model'
+import { Confirmation } from '../helpers/posts-helpers'
 
 const statePrefix = '[DATA]'
 
@@ -40,14 +41,20 @@ export class AddUsers {
   constructor(public payload: User[]) {}
 }
 
-export class AddPage {
-  static readonly type = statePrefix + 'AddPage'
+export class UpdatePaging {
+  static readonly type = statePrefix + 'UpdatePaging'
 
   constructor(public payload: Page) {}
 }
 
-export class AddCurrentPage {
-  static readonly type = statePrefix + 'AddCurrentPage'
+export class SetCurrentPage {
+  static readonly type = statePrefix + 'SetCurrentPage'
 
   constructor(public payload: number) {}
+}
+
+export class ClearConfirmation {
+  static readonly type = statePrefix + 'ClearConfirmation'
+
+  constructor(public payload: Confirmation) {}
 }
