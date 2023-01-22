@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router'
 import { Store } from '@ngxs/store'
 import { DataState } from '../../../store/data-store'
 import { Post } from '../../../model/posts-model'
-import { UpdatePost } from '../../../store/data-actions'
+import { NewPost, UpdatePost } from '../../../store/data-actions'
 
 @Component({
   selector: 'app-detail-body',
@@ -25,7 +25,11 @@ export class DetailBodyComponent {
 
   constructor(private store: Store, private route: ActivatedRoute, fb: FormBuilder) {
     route.params.subscribe((params) => (this.id = Number(params['id'])))
-    this.post = this.store.selectSnapshot(DataState.selectPosts).find((post) => post.id === this.id)
+    if (this.id === 0) {
+      this.post = this.generateNewPost(1)
+    } else {
+      this.post = this.store.selectSnapshot(DataState.selectPosts).find((post) => post.id === this.id)
+    }
     this.myForm = fb.group({
       title: [this.post?.title, Validators.compose([Validators.required, titleLengthValidator])],
       body: [this.post?.body, Validators.required],
@@ -36,14 +40,36 @@ export class DetailBodyComponent {
 
   onSubmit(value: { title: string; body: string }) {
     if (value.title.length <= 200) {
-      this.store.dispatch(
-        new UpdatePost({
-          userId: this.post?.userId,
-          id: this.id,
-          title: value.title,
-          body: value.body,
-        })
-      )
+      if (this.id === 0) {
+        this.store.dispatch(
+          new NewPost({
+            // @ts-ignore
+            userId: this.post?.userId,
+            // @ts-ignore
+            id: this.post?.id,
+            title: value.title,
+            body: value.body,
+          })
+        )
+      } else {
+        this.store.dispatch(
+          new UpdatePost({
+            userId: this.post?.userId,
+            id: this.id,
+            title: value.title,
+            body: value.body,
+          })
+        )
+      }
+    }
+  }
+
+  generateNewPost(userId: number) {
+    return {
+      userId,
+      id: 1,
+      title: '',
+      body: '',
     }
   }
 }

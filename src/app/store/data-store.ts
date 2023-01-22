@@ -1,6 +1,6 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store'
 import { Data, defaultData } from '../model/data-model'
-import { AddCurrentPage, AddPage, AddPosts, AddUsers, UpdatePost } from './data-actions'
+import { AddCurrentPage, AddPage, AddPosts, AddUsers, NewPost, UpdatePost } from './data-actions'
 import { Post } from '../model/posts-model'
 
 export class DataModel {
@@ -65,6 +65,19 @@ export class DataState {
       acc.push(val.id === action.payload.id ? action.payload : val)
       return acc
     }, [])
+    setState(stateCopy)
+  }
+
+  @Action(NewPost)
+  newPost({ getState, setState }: StateContext<DataModel>, action: NewPost) {
+    const stateCopy = { ...getState() }
+    stateCopy.data.posts = stateCopy.data.posts.reduce(
+      (acc, val) => {
+        acc.push({ ...val, id: val.id + 1 })
+        return acc
+      },
+      [action.payload]
+    )
     setState(stateCopy)
   }
 

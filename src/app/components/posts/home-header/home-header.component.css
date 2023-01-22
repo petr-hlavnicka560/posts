@@ -10,10 +10,19 @@
   font-size: larger;
 }
 
-.log-in{
+.button-container{
+  display: flex;
+  flex-direction: row;
+}
+
+.button{
   border-style: solid;
   border-color: #3e3d3d;
   border-width: 1px;
   border-radius: 15px;
   padding: 3px 15px 3px;
+}
+
+.button-left{
+  margin-right: 10px;
 }

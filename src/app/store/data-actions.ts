@@ -22,6 +22,12 @@ export class UpdatePost {
   constructor(public payload: { id: number; title: string; body: string; userId: number | undefined }) {}
 }
 
+export class NewPost {
+  static readonly type = statePrefix + 'NewPost'
+
+  constructor(public payload: Post) {}
+}
+
 export class AddUsers {
   static readonly type = statePrefix + 'AddUsers'
 
