@@ -15,8 +15,6 @@ import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin'
 import { DataState } from './store/data-store'
 import { HttpClientModule } from '@angular/common/http'
 import { PostSelectPipe } from './pipes/post-select-pipe'
-import { DetailHeaderComponent } from './components/post-detail/detail-header/detail-header.component'
-import { DetailBodyComponent } from './components/post-detail/detail-body/detail-body.component'
 import { DetailComponent } from './components/post-detail/detail/detail.component'
 import { ReactiveFormsModule } from '@angular/forms'
 
@@ -29,8 +27,6 @@ import { ReactiveFormsModule } from '@angular/forms'
     ListHeaderComponent,
     PostListComponent,
     DetailComponent,
-    DetailHeaderComponent,
-    DetailBodyComponent,
     PostSelectPipe,
   ],
   imports: [

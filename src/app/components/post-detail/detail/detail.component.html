@@ -1,4 +1,31 @@
 <div class="main-frame">
-  <app-detail-header></app-detail-header>
-  <app-detail-body></app-detail-body>
+  <div class="header">
+    <span class="status">{{pageTitle}}</span>
+    <div class="return" (click)="onReturn()">Go back to home page</div>
+  </div>
+  <div class="body">
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)">
+      <label class="title" for="titleInput">Title</label>
+      <div class="contentContainer">
+        <input type="text" id="titleInput" [formControl]="$any(myForm.controls['title'])">
+      </div>
+      <div *ngIf="title.hasError('invalidTitleLength')" class="title-error">
+        The title cannot exceed more than 200 characters!
+      </div>
+      <label class="title" for="messageInput">Message</label>
+      <div class="contentContainer">
+        <input type="text" id="messageInput" [formControl]="$any(myForm.controls['body'])">
+      </div>
+      <div [ngClass]="{'buttons-full' : areButtonsFull, 'buttons-without-delete' : !areButtonsFull}">
+        <button type="button" *ngIf="areButtonsFull" class="button">
+          Delete
+        </button>
+        <div class="buttons-full">
+          <button type="submit" class="button save" [ngClass]="{saveDisabled: !title.valid || !body.valid}">Save
+          </button>
+          <button type="button" class="button" (click)="onReturn()">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
