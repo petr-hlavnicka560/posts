@@ -1,0 +1,20 @@
+<div class="main-frame">
+  <div class="header">
+    <span class="status">Log In</span>
+  </div>
+  <div class="body">
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)">
+      <label class="title" for="titleInput">User Name</label>
+      <div class="inputContainer">
+        <input [ngClass]="{'input-on-error': invalidUserName}" type="text" id="titleInput"
+               [formControl]="$any(myForm.controls['loginName'])" (focus)="clearInvalidUserName()">
+        <button type="submit" class="button" [ngClass]="{saveDisabled: !loginName.valid}">
+          Log In
+        </button>
+        <div *ngIf="invalidUserName" class="input-error">
+          Not a valid user name!
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -47,28 +47,30 @@ export class DetailComponent {
   }
 
   onSubmit(value: { title: string; body: string }) {
-    if (value.title.length <= 200) {
-      if (this.id === 0) {
-        this.store.dispatch(
-          new NewPost({
-            // @ts-ignore
-            userId: this.post?.userId,
-            id: 1,
-            title: value.title,
-            body: value.body,
-          })
-        )
-        this.updatePagingAndNavigateHome(1)
-      } else {
-        this.store.dispatch(
-          new UpdatePost({
-            userId: this.post?.userId,
-            id: this.id,
-            title: value.title,
-            body: value.body,
-          })
-        )
-        this.router.navigateByUrl('/home')
+    if (this.title.valid && this.body.valid) {
+      if (value.title.length <= 200) {
+        if (this.id === 0) {
+          this.store.dispatch(
+            new NewPost({
+              // @ts-ignore
+              userId: this.post?.userId,
+              id: 1,
+              title: value.title,
+              body: value.body,
+            })
+          )
+          this.updatePagingAndNavigateHome(1)
+        } else {
+          this.store.dispatch(
+            new UpdatePost({
+              userId: this.post?.userId,
+              id: this.id,
+              title: value.title,
+              body: value.body,
+            })
+          )
+          this.router.navigateByUrl('/home')
+        }
       }
     }
   }

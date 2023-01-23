@@ -18,6 +18,7 @@ import { PostSelectPipe } from './pipes/post-select-pipe'
 import { DetailComponent } from './components/post-detail/detail/detail.component'
 import { ReactiveFormsModule } from '@angular/forms'
 import { ListConfirmationComponent } from './components/posts/list-confirmation/list-confirmation.component'
+import { LoginComponent } from './components/login/login/login.component'
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ListConfirmationComponent } from './components/posts/list-confirmation/
     ListConfirmationComponent,
     PostListComponent,
     DetailComponent,
+    LoginComponent,
     PostSelectPipe,
   ],
   imports: [

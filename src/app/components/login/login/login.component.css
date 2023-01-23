@@ -1,0 +1,67 @@
+.main-frame{
+  border-style: solid;
+  border-color: #222222;
+  border-width: 1px;
+}
+
+.header {
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 15px;
+  padding-bottom: 5px;
+  margin-top: 5px;
+  border-bottom-style: solid;
+  border-color: #222222;
+  border-bottom-width: 1px;
+}
+
+.status {
+  font-size: larger;
+  font-weight: bold;
+}
+
+.body {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 50px 15px 50px 15px;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.input-on-error{
+  border-color: red;
+}
+
+.button {
+  align-self: flex-end;
+  border-style: solid;
+  border-color: #222222;
+  border-width: 1px;
+  border-radius: 15px;
+  margin-top: 10px;
+  padding: 3px 15px 3px;
+}
+
+.input-error {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  font-size: small;
+  font-weight: bold;
+  color: red;
+  margin-top: 20px;
+}
+
+.saveDisabled {
+  color: #a8a7a7;
+}

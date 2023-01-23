@@ -19,4 +19,8 @@ export class HomeHeaderComponent {
     this.router.navigateByUrl(`/post/0`)
     this.store.dispatch(new ClearConfirmation())
   }
+
+  navigateToLogin() {
+    this.router.navigateByUrl(`/login`)
+  }
 }
