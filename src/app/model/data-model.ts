@@ -9,6 +9,8 @@ export interface Data {
   page: Page
 
   confirmation: Confirmation
+
+  logged: Logged
 }
 
 export const defaultData = {
@@ -20,10 +22,21 @@ export const defaultData = {
       max: 1,
     },
     confirmation: Confirmation.None,
+    logged: {
+      isLogged: false,
+      userId: 0,
+      name: '',
+    },
   },
 }
 
 export interface Page {
   current: number
   max: number
+}
+
+export interface Logged {
+  isLogged: boolean
+  userId: number
+  name: string
 }

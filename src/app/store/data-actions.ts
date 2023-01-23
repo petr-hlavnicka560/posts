@@ -57,3 +57,9 @@ export class ClearConfirmation {
 
   constructor() {}
 }
+
+export class Logout {
+  static readonly type = statePrefix + 'Logout'
+
+  constructor() {}
+}

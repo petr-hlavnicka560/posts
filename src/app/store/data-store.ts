@@ -1,10 +1,11 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store'
-import { Data, defaultData } from '../model/data-model'
+import { Data, Logged, defaultData } from '../model/data-model'
 import {
   AddPosts,
   AddUsers,
   ClearConfirmation,
   DeletePost,
+  Logout,
   NewPost,
   SetCurrentPage,
   UpdatePaging,
@@ -62,6 +63,16 @@ export class DataState {
   @Selector()
   static selectConfirmation(state: DataModel): Confirmation {
     return state.data.confirmation
+  }
+
+  @Selector()
+  static selectLogged(state: DataModel): Logged {
+    return state.data.logged
+  }
+
+  @Selector()
+  static selectIsLogged(state: DataModel): boolean {
+    return state.data.logged.isLogged
   }
 
   @Action(AddPosts)
@@ -143,6 +154,17 @@ export class DataState {
   clearConfirmation({ getState, setState }: StateContext<DataModel>) {
     const stateCopy = { ...getState() }
     stateCopy.data.confirmation = Confirmation.None
+    setState(stateCopy)
+  }
+
+  @Action(Logout)
+  logout({ getState, setState }: StateContext<DataModel>) {
+    const stateCopy = { ...getState() }
+    stateCopy.data.logged = {
+      isLogged: false,
+      userId: 0,
+      name: '',
+    }
     setState(stateCopy)
   }
 }

@@ -1,7 +1,8 @@
 <div class="header">
   <span class="title">Home</span>
   <div class="button-container">
-    <span class="button button-left" (click)="navigateToNewPost()">New Post</span>
-    <span class="button" (click)="navigateToLogin()">Log in</span>
+    <span class="info-text">{{selectInfoText(isLogged$ | async)}} </span>
+    <span *ngIf="isLogged$ | async" class="button button-left" (click)="navigateToNewPost()">New Post</span>
+    <span class="button" (click)="onLogPress()">{{selectLogButtonName(isLogged$ | async)}}</span>
   </div>
 </div>
