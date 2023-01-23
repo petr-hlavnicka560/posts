@@ -30,7 +30,11 @@
   font-size: larger;
 }
 
-.post-title-color:hover{
+.post-title-color{
   color: #588EC6;
   text-decoration: underline;
+}
+
+.post-title-color:hover{
+  color: blue;
 }

@@ -11,7 +11,8 @@
         <a href="{{post.user.website}}">{{ post.user.companyName }}</a>
       </div>
       <div class="post-item-post">
-        <div class="post-title post-title-color" (click)="navigateToDetail(post.post.id)">
+        <div [ngClass]="{'post-title-color': isActiveTitle(post.post.userId, loggedUser$ | async)}" class="post-title "
+             (click)="navigateToDetail(post.post.id, post.post.userId)" >
           {{ post.post.title }}
         </div>
         <div>

@@ -8,6 +8,7 @@ import { Store } from '@ngxs/store'
 import { DataState } from '../../../store/data-store'
 import { Router } from '@angular/router'
 import { ClearConfirmation } from '../../../store/data-actions'
+import { Logged } from '../../../model/data-model'
 
 @Component({
   selector: 'app-post-list',
@@ -15,9 +16,10 @@ import { ClearConfirmation } from '../../../store/data-actions'
   styleUrls: ['./post-list.component.css'],
 })
 export class PostListComponent implements OnInit {
+  loggedUser$: Observable<Logged>
   postList$: Observable<
     {
-      post: { id: number; title: string; body: string }
+      post: { id: number; userId: number; title: string; body: string }
       user: { companyName: string | undefined; name: string | undefined; website: string | undefined }
     }[]
   >
@@ -26,10 +28,18 @@ export class PostListComponent implements OnInit {
 
   ngOnInit() {
     this.postList$ = this.store.select(DataState.selectPostsRows)
+    this.loggedUser$ = this.store.select(DataState.selectLogged)
   }
 
-  navigateToDetail(id: number) {
-    this.router.navigateByUrl(`/post/${id.toString()}`)
-    this.store.dispatch(new ClearConfirmation())
+  isActiveTitle(userIdFromPost: number, loggedUser: Logged | null): boolean {
+    return !loggedUser || loggedUser.userId === userIdFromPost
+  }
+
+  navigateToDetail(id: number, userIdFromPost: number) {
+    const loggedUser = this.store.selectSnapshot(DataState.selectLogged)
+    if (!loggedUser || loggedUser.userId === userIdFromPost) {
+      this.router.navigateByUrl(`/post/${id.toString()}`)
+      this.store.dispatch(new ClearConfirmation())
+    }
   }
 }
