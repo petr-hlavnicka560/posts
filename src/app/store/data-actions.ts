@@ -1,7 +1,6 @@
 import { Post } from '../model/posts-model'
 import { User } from '../model/users-model'
 import { Page } from '../model/data-model'
-import { Confirmation } from '../helpers/posts-helpers'
 
 const statePrefix = '[DATA]'
 
@@ -56,5 +55,5 @@ export class SetCurrentPage {
 export class ClearConfirmation {
   static readonly type = statePrefix + 'ClearConfirmation'
 
-  constructor(public payload: Confirmation) {}
+  constructor() {}
 }

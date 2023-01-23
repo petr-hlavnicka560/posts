@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core'
 import { Confirmation } from '../../../helpers/posts-helpers'
 import { Store } from '@ngxs/store'
 import { DataState } from '../../../store/data-store'
+import { Observable } from 'rxjs'
 
 @Component({
   selector: 'app-list-confirmation',
@@ -13,15 +14,15 @@ import { DataState } from '../../../store/data-store'
   styleUrls: ['./list-confirmation.component.css'],
 })
 export class ListConfirmationComponent implements OnInit {
-  confirmation: Confirmation
+  confirmation$: Observable<Confirmation>
 
   constructor(private store: Store) {}
 
   ngOnInit() {
-    this.confirmation = this.store.selectSnapshot(DataState.selectConfirmation)
+    this.confirmation$ = this.store.select(DataState.selectConfirmation)
   }
 
-  isConfirmation(confirmation: Confirmation) {
-    return confirmation !== Confirmation.None
+  isConfirmation(confirmation: Confirmation | null) {
+    return !confirmation || confirmation !== Confirmation.None
   }
 }

@@ -1,5 +1,5 @@
 <li class="list-confirmation-container">
-  <div *ngIf="isConfirmation(confirmation)">
-    {{confirmation}}
+  <div *ngIf="isConfirmation(confirmation$ | async)">
+    {{confirmation$ | async}}
   </div>
 </li>

@@ -7,6 +7,7 @@ import { Observable } from 'rxjs'
 import { Store } from '@ngxs/store'
 import { DataState } from '../../../store/data-store'
 import { Router } from '@angular/router'
+import { ClearConfirmation } from '../../../store/data-actions'
 
 @Component({
   selector: 'app-post-list',
@@ -29,5 +30,6 @@ export class PostListComponent implements OnInit {
 
   navigateToDetail(id: number) {
     this.router.navigateByUrl(`/post/${id.toString()}`)
+    this.store.dispatch(new ClearConfirmation())
   }
 }
