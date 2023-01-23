@@ -5,6 +5,7 @@ import {
   AddUsers,
   ClearConfirmation,
   DeletePost,
+  Login,
   Logout,
   NewPost,
   SetCurrentPage,
@@ -154,6 +155,20 @@ export class DataState {
   clearConfirmation({ getState, setState }: StateContext<DataModel>) {
     const stateCopy = { ...getState() }
     stateCopy.data.confirmation = Confirmation.None
+    setState(stateCopy)
+  }
+
+  @Action(Login)
+  login({ getState, setState }: StateContext<DataModel>, action: Login) {
+    const stateCopy = { ...getState() }
+    const currentUser = stateCopy.data.users.find((user) => user.username.toLowerCase() === action.payload)
+    stateCopy.data.logged = {
+      isLogged: true,
+      // @ts-ignore
+      userId: currentUser.id,
+      // @ts-ignore
+      name: currentUser.name,
+    }
     setState(stateCopy)
   }
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { Store } from '@ngxs/store'
 import { ApiService } from './api/apiService'
-import { AddPosts, AddUsers, UpdatePaging } from './store/data-actions'
+import { AddPosts, AddUsers, Login, UpdatePaging } from './store/data-actions'
 import { Post } from './model/posts-model'
 import { User } from './model/users-model'
 import { forkJoin } from 'rxjs'
@@ -21,6 +21,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.localStore.saveData('user_leanne', 'registered')
+    this.localStore.saveData('user_antonette', 'registered')
     forkJoin({
       posts: this.apiService.getData('https://jsonplaceholder.typicode.com/posts'),
       users: this.apiService.getData('https://jsonplaceholder.typicode.com/users'),
@@ -31,6 +32,10 @@ export class AppComponent implements OnInit {
       }
       if (res.users) {
         this.store.dispatch(new AddUsers(res.users as User[]))
+        const loggedUserName = this.localStore.getData('loggedUser')
+        if (loggedUserName) {
+          this.store.dispatch(new Login(loggedUserName))
+        }
       }
     })
   }

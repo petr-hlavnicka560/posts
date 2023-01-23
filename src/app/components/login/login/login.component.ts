@@ -6,6 +6,8 @@ import { Component } from '@angular/core'
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Store } from '@ngxs/store'
 import { LocalService } from '../../../service/storageService'
+import { Login } from '../../../store/data-actions'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-login',
@@ -17,18 +19,21 @@ export class LoginComponent {
   loginName: AbstractControl
   invalidUserName = false
 
-  constructor(private store: Store, fb: FormBuilder, private localStore: LocalService) {
+  constructor(private store: Store, fb: FormBuilder, private localStore: LocalService, private router: Router) {
     this.myForm = fb.group({
-      loginName: [this.loginName, Validators.compose([Validators.required])],
+      loginName: [this.loginName, Validators.required],
     })
     this.loginName = this.myForm.controls['loginName']
   }
 
   onSubmit(value: { loginName: string }) {
     if (this.loginName.valid) {
-      const key = `user_${value.loginName.toLowerCase()}`
+      const name = value.loginName.toLowerCase()
+      const key = `user_${name}`
       if (this.localStore.getData(key) === 'registered') {
-        console.log('====== INSIDE LoginComponent onSubmit, Leanne user logged')
+        this.store.dispatch(new Login(name))
+        this.localStore.saveData('loggedUser', name)
+        this.router.navigateByUrl('/home')
       } else {
         this.invalidUserName = true
       }

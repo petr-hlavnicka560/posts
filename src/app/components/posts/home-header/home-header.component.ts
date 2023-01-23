@@ -8,6 +8,7 @@ import { Store } from '@ngxs/store'
 import { ClearConfirmation, Logout } from '../../../store/data-actions'
 import { Observable } from 'rxjs'
 import { DataState } from '../../../store/data-store'
+import { LocalService } from '../../../service/storageService'
 
 @Component({
   selector: 'app-home-header',
@@ -17,7 +18,7 @@ import { DataState } from '../../../store/data-store'
 export class HomeHeaderComponent implements OnInit {
   isLogged$: Observable<boolean>
 
-  constructor(private store: Store, private router: Router) {}
+  constructor(private store: Store, private localStore: LocalService, private router: Router) {}
 
   ngOnInit() {
     this.isLogged$ = this.store.select(DataState.selectIsLogged)
@@ -41,6 +42,7 @@ export class HomeHeaderComponent implements OnInit {
       this.router.navigateByUrl(`/login`)
     } else {
       this.store.dispatch(new Logout())
+      this.localStore.removeData('loggedUser')
     }
   }
 }
