@@ -19,6 +19,8 @@ import { DetailComponent } from './components/post-detail/detail/detail.componen
 import { ReactiveFormsModule } from '@angular/forms'
 import { ListConfirmationComponent } from './components/posts/list-confirmation/list-confirmation.component'
 import { LoginComponent } from './components/login/login/login.component'
+import { DeleteModalComponent } from './components/post-detail/delete-modal/delete-modal.component'
+import { ModalModule } from 'ngx-bootstrap/modal'
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { LoginComponent } from './components/login/login/login.component'
     PostListComponent,
     DetailComponent,
     LoginComponent,
+    DeleteModalComponent,
     PostSelectPipe,
   ],
   imports: [
@@ -41,6 +44,7 @@ import { LoginComponent } from './components/login/login/login.component'
     NgxsModule.forFeature([DataState]),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot(),
+    ModalModule.forRoot(),
     HttpClientModule,
     ReactiveFormsModule,
   ],

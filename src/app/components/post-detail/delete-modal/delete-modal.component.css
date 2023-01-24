@@ -1,0 +1,30 @@
+.modal-dialog {
+  margin: 0;
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  width: 150px;
+  height: 100px;
+  transform: translate(-75px,-50px);
+  background-color: #eaeaea;
+  padding: 10px;
+  border-style: solid;
+  border-color: #222222;
+  border-width: 1px;
+  border-radius: 10px;
+}
+
+.button-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.button {
+  border-style: solid;
+  border-color: #222222;
+  border-width: 1px;
+  border-radius: 15px;
+  padding: 3px 15px 3px;
+  background-color: white;
+}

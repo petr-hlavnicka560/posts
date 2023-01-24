@@ -17,9 +17,7 @@
         <input type="text" id="messageInput" [formControl]="$any(myForm.controls['body'])">
       </div>
       <div [ngClass]="{'buttons-full' : areButtonsFull, 'buttons-without-delete' : !areButtonsFull}">
-        <button type="button" *ngIf="areButtonsFull" class="button" (click)="onDelete(id)">
-          Delete
-        </button>
+        <app-delete-modal *ngIf="areButtonsFull" [postId]="id"></app-delete-modal>
         <div class="buttons-full">
           <button type="submit" class="button save" [ngClass]="{saveDisabled: !title.valid || !body.valid}">Save
           </button>

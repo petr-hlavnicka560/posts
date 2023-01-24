@@ -1,0 +1,10 @@
+<button type="button" class="button" (click)="openModal(template)">Delete</button>
+<ng-template #template>
+  <div class="modal-dialog modal-body text-center">
+    <p>Do you want really to delete the post?</p>
+    <div class="button-container">
+      <button type="button" class="btn btn-default" (click)="confirm()">Yes</button>
+      <button type="button" class="btn btn-primary" (click)="decline()">No</button>
+    </div>
+  </div>
+</ng-template>

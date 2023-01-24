@@ -8,7 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { Store } from '@ngxs/store'
 import { DataState } from '../../../store/data-store'
 import { Post } from '../../../model/posts-model'
-import { DeletePost, NewPost, UpdatePaging, UpdatePost } from '../../../store/data-actions'
+import { NewPost, UpdatePaging, UpdatePost } from '../../../store/data-actions'
 import { Status } from '../../../helpers/post-detail-helpers'
 import { updatePaging } from '../../../helpers/paging-helpers'
 
@@ -32,7 +32,7 @@ export class DetailComponent {
     if (this.id === 0) {
       this.pageTitle = this.statusEnum.New
       this.areButtonsFull = false
-      this.post = this.generateNewPost(1)
+      this.post = this.generateNewPost()
     } else {
       this.pageTitle = this.statusEnum.Edit
       this.areButtonsFull = true
@@ -75,14 +75,10 @@ export class DetailComponent {
     }
   }
 
-  onDelete(id: number) {
-    this.store.dispatch(new DeletePost(id))
-    this.updatePagingAndNavigateHome(this.id)
-  }
-
-  generateNewPost(userId: number) {
+  generateNewPost() {
+    const loggedUser = this.store.selectSnapshot(DataState.selectLogged)
     return {
-      userId,
+      userId: loggedUser.userId,
       id: 1,
       title: '',
       body: '',
